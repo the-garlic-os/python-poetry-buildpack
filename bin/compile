@@ -25,19 +25,11 @@ for env_file in $BUILDPACK_VARIABLES ; do
     [ -f "$ENV_DIR/$env_file" ] && export "$(basename "$env_file")=$(cat "$ENV_DIR/$env_file" 2>/dev/null)"
 done
 
-if [ -z "${POETRY_VERSION:-}" ] ; then
-    export POETRY_VERSION=1.1.13
-    log "No Poetry version specified in POETRY_VERSION config var. Defaulting to $POETRY_VERSION."
-else
-    log "Using Poetry version from POETRY_VERSION config var: $POETRY_VERSION"
-fi
-
 log "Generate requirements.txt with Poetry"
 
 log "Install Poetry"
 
-curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py \
-    | sed -e 's/allowed_executables = \["python", "python3"\]/allowed_executables = ["python3"]/' \
+curl -sSL https://install.python-poetry.org/ \
     | python3 \
     | indent
 

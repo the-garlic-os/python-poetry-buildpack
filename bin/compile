@@ -91,9 +91,14 @@ log "ea"
 log "sports"
 
 if [[ "$PYTHON_RUNTIME_VERSION" =~ ^[2-9](\.[0-9]+){2}$ ]] ; then
+    log "its"
     log "Write $PYTHON_RUNTIME_VERSION into $RUNTIME_FILE"
+    log "in"
     echo "python-$PYTHON_RUNTIME_VERSION" > "$RUNTIME_FILE"
+    log "the"
 else
+    log "game"
     log "$PYTHON_RUNTIME_VERSION is not valid, please specify an exact Python version (e.g. 3.8.1) in your pyproject.toml (and thus poetry.lock)" >&2
+    log "h"
     exit 1
 fi
